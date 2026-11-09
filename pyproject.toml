@@ -1,0 +1,26 @@
+[project]
+name = "gemini-rag"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "cryptography<46",
+    "fastapi>=0.162.2",
+    "google-genai>=3.0.0",
+    "openai>=3.46.0",
+    "pillow>=13.0.0",
+    "pypdf>=7.0.0",
+    "python-dotenv>=1.2.4",
+    "python-multipart>=0.0.33",
+    "reportlab>=5.1.0",
+    "supabase>=2.34.1",
+    "uvicorn>=0.54.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+[tool.pytest.ini_options]
+pythonpath = ["."]

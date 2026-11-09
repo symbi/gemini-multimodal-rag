@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multimodal RAG — Gemini Embedding 2</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <h1>Multimodal RAG</h1>
+  <p class="sub">Gemini Embedding 2 · Supabase pgvector · Codex reasoning</p>
+</header>
+
+<main>
+<section id="upload-section">
+  <h2>1 · Upload documents</h2>
+  <div id="dropzone" tabindex="0">
+    <p><strong>Drag &amp; drop</strong> files here, or click to browse</p>
+    <p class="hint">Supported: text/code · PDF · PNG/JPEG · MP4/MOV (≤120s) · MP3/WAV (≤180s)</p>
+    <input type="file" id="file-input" multiple
+           accept=".txt,.md,.markdown,.rst,.csv,.tsv,.log,.json,.yaml,.yml,.xml,.html,.py,.js,.ts,.go,.rs,.java,.c,.h,.cpp,.sh,.rb,.php,.sql,.css,.toml,.pdf,.png,.jpg,.jpeg,.mp4,.mov,.mp3,.wav">
+    <div id="upload-status" class="status-line" hidden></div>
+  </div>
+</section>
+
+<section id="documents-section">
+  <h2>2 · Documents <span id="doc-count" class="count-chip"></span></h2>
+  <div class="toolbar">
+    <button id="refresh-btn" class="secondary">Refresh</button>
+    <button id="embed-pending-btn" class="secondary">Embed pending</button>
+    <span class="hint">Files placed directly in <code>data/uploads/</code> need “Embed pending”.</span>
+</div>
+  <table id="docs-table">
+    <thead>
+      <tr><th>File</th><th>Modality</th><th>Status</th><th>Chunks</th><th>Size</th><th>Actions</th></tr>
+    </thead>
+    <tbody id="docs-tbody"><tr><td colspan="6" class="empty">No documents yet.</td></tr></tbody>
+  </table>
+</section>
+
+<section id="query-section">
+  <h2>3 · Ask a question</h2>
+  <form id="query-form">
+    <input type="text" id="question-input" placeholder="e.g. What does the report say about revenue?" autocomplete="off">
+    <select id="modality-filter">
+      <option value="">All modalities</option>
+      <option value="text">Text</option>
+      <option value="pdf">PDF</option>
+      <option value="image">Images</option>
+      <option value="video">Video</option>
+      <option value="audio">Audio</option>
+    </select>
+    <select id="topk-select">
+      <option value="5" selected>Top 5</option>
+      <option value="8">Top 8</option>
+      <option value="12">Top 12</option>
+    </select>
+    <button type="submit" id="ask-btn">Ask</button>
+  </form>
+  <div id="query-status" class="status-line" hidden></div>
+
+  <div id="answer-panel" hidden>
+    <h3>Answer</h3>
+    <div id="answer-body"></div>
+  </div>
+  <div id="results-panel" hidden>
+    <h3>Retrieved chunks</h3>
+    <div id="results-body"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p>Embeddings: <code>gemini-embedding-2</code> (1536d) · Reasoning: <code id="codex-model-label"></code> · Vector store: Supabase pgvector</p>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>

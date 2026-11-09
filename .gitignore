@@ -1,0 +1,22 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+.supabase_pwd
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# App data (uploads, generated samples)
+data/
+
+# Tooling artifacts
+.playwright-cli/
+.playwright/
+
+# OS
+.DS_Store
