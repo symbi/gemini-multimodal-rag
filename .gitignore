@@ -17,6 +17,7 @@ data/
 # Tooling artifacts
 .playwright-cli/
 .playwright/
+.claude/settings.local.json
 
 # OS
 .DS_Store
